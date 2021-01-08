@@ -1,22 +1,10 @@
 <?php
-/*
-Plugin Name: Custom Avatar
-Plugin URI: heycode.ir
-Description: Custom Avatar For Wp
-Author: Hamid Firuzi
-Author URI: https://heycode.ir
-Version: 1.0.0
-*/
-
-if ( !defined('ABSPATH') ) {
-    exit;
-}
-
 
 /**
- * Custom Avatar Plugin PLs Read Comment
+ * Custom Avatar Without a Plugin
  */
 
+// 1. Enqueue the needed scripts.
 add_action( "admin_enqueue_scripts", "heycode_enqueue" );
 function heycode_enqueue( $hook ){
 	// Load scripts only on the profile page.
@@ -26,6 +14,7 @@ function heycode_enqueue( $hook ){
 		wp_enqueue_media();
 	}
 }
+
 // 2. Scripts for Media Uploader.
 function heycode_admin_media_scripts() {
 	?>
@@ -57,8 +46,6 @@ function heycode_admin_media_scripts() {
 }
 add_action( 'admin_print_footer_scripts-profile.php', 'heycode_admin_media_scripts' );
 add_action( 'admin_print_footer_scripts-user-edit.php', 'heycode_admin_media_scripts' );
-
-
 
 
 // 3. Adding the Custom Image section for avatar.
@@ -95,11 +82,10 @@ add_action( 'show_user_profile', 'custom_user_profile_fields', 10, 1 );
 add_action( 'edit_user_profile', 'custom_user_profile_fields', 10, 1 );
 
 
-
 // 4. Saving the values.
 add_action( 'personal_options_update', 'heycode_save_local_avatar_fields' );
 add_action( 'edit_user_profile_update', 'heycode_save_local_avatar_fields' );
-function ayecode_save_local_avatar_fields( $user_id ) {
+function heycode_save_local_avatar_fields( $user_id ) {
 	if ( current_user_can( 'edit_user', $user_id ) ) {
 		if( isset($_POST[ 'heycode-custom-avatar' ]) ){
 			$avatar = esc_url_raw( $_POST[ 'heycode-custom-avatar' ] );
@@ -107,7 +93,6 @@ function ayecode_save_local_avatar_fields( $user_id ) {
 		}
 	}
 }
-
 
 
 // 5. Set the uploaded image as default gravatar.
