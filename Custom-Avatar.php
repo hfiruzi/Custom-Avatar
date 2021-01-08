@@ -129,7 +129,7 @@ function heycode_get_avatar_url( $url, $id_or_email, $args ) {
 
 	// If there is no custom avatar set, return the normal one.
 	if( $custom_url == '' || !empty($args['force_default'])) {
-		return esc_url_raw( 'https://switchgearcontent.com/wp-content/uploads/2021/01/avatar.jpg' );
+		return esc_url_raw( 'https://heycode.ir/wp-content/uploads/2020/11/logo-e1606029107548.png' );
 	}else{
 		return esc_url_raw($custom_url);
 	}
